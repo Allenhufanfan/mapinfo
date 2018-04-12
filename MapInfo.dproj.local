@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BorlandProject>
+	<Transactions>
+    <Transaction>1899-12-30 00:00:00.000.930,=C:\Users\hufan\Desktop\xe_project\百度地图api\地图营销助手\Unit1.pas</Transaction>
+    <Transaction>1899-12-30 00:00:00.000.475,C:\Users\hufan\Desktop\xe_project\百度地图api\地图营销助手\Unit1.pas=C:\Users\hufan\Desktop\xe_project\百度地图api\地图营销助手\uPublicFunc.pas</Transaction>
+    <Transaction>1899-12-30 00:00:00.000.803,=C:\Users\hufan\Desktop\xe_project\百度地图api\地图营销助手\Unit1.pas</Transaction>
+    <Transaction>1899-12-30 00:00:00.000.451,=D:\百度地图api\地图营销助手\uSetCity.pas</Transaction>
+    <Transaction>1899-12-30 00:00:00.000.563,=C:\Users\hufan\Desktop\xe_project\百度地图api\地图营销助手\Unit1.pas</Transaction>
+    <Transaction>1899-12-30 00:00:00.000.844,=C:\Users\hufan\Desktop\xe_project\百度地图api\地图营销助手\dmDBSQLite3.pas</Transaction>
+    <Transaction>1899-12-30 00:00:00.000.875,=C:\Users\hufan\Desktop\xe_project\百度地图api\地图营销助手\SQLiteTable3.pas</Transaction>
+    <Transaction>1899-12-30 00:00:00.000.951,C:\Users\hufan\Desktop\xe_project\百度地图api\地图营销助手\SQLiteTable3.pas=</Transaction>
+    <Transaction>1899-12-30 00:00:00.000.490,C:\Users\hufan\Desktop\xe_project\百度地图api\地图营销助手\USetCity.pas=C:\Users\hufan\Desktop\xe_project\百度地图api\地图营销助手\Unit1.pas</Transaction>
+    <Transaction>1899-12-30 00:00:00.000.536,=D:\百度地图api\地图营销助手\Unit1.pas</Transaction>
+    <Transaction>1899-12-30 00:00:00.000.808,D:\百度地图api\地图营销助手\Unit1.pas=D:\百度地图api\地图营销助手\uSetMapInfoSql.pas</Transaction>
+    <Transaction>1899-12-30 00:00:00.000.709,=C:\Users\hufan\Desktop\xe_project\百度地图api\地图营销助手\uRegCode.pas</Transaction>
+    <Transaction>1899-12-30 00:00:00.000.981,C:\Users\hufan\Desktop\xe_project\百度地图api\地图营销助手\uMapInfo.dfm=C:\Users\hufan\Documents\RAD Studio\Projects\Unit1.dfm</Transaction>
+    <Transaction>1899-12-30 00:00:00.000.750,=C:\Users\hufan\Desktop\xe_project\百度地图api\地图营销助手\uSQLiteUtils.pas</Transaction>
+    <Transaction>1899-12-30 00:00:00.000.435,C:\Users\hufan\Desktop\xe_project\百度地图api\地图营销助手\MapInfo.dproj=C:\Users\hufan\Documents\RAD Studio\Projects\Project1.dproj</Transaction>
+    <Transaction>1899-12-30 00:00:00.000.981,C:\Users\hufan\Desktop\xe_project\百度地图api\地图营销助手\uMapInfo.pas=C:\Users\hufan\Documents\RAD Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>1899-12-30 00:00:00.000.284,=C:\Users\hufan\Documents\RAD Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>1899-12-30 00:00:00.000.729,C:\Users\hufan\Desktop\xe_project\百度地图api\地图营销助手\uSetMapInfoSql.pas=</Transaction>
+    <Transaction>1899-12-30 00:00:00.000.194,D:\百度地图api\地图营销助手\USetCity.pas=</Transaction>
+    <Transaction>1899-12-30 00:00:00.000.490,C:\Users\hufan\Desktop\xe_project\百度地图api\地图营销助手\USetCity.dfm=C:\Users\hufan\Desktop\xe_project\百度地图api\地图营销助手\Unit1.dfm</Transaction>
+    <Transaction>1899-12-30 00:00:00.000.097,=C:\Users\hufan\Documents\RAD Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>1899-12-30 00:00:00.000.706,=C:\Users\Administrator\Desktop\xe_project\百度地图api\地图营销助手\uRegister.pas</Transaction>
+  </Transactions>
+</BorlandProject>
