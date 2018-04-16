@@ -14,32 +14,32 @@ uses
   uRegCode, IdHashMessageDigest, IdGlobal;
 
 type
-  //½¨Á¢Ò»¸ö»ñÈ¡Êı¾İµÄÏß³Ì
+  //å»ºç«‹ä¸€ä¸ªè·å–æ•°æ®çš„çº¿ç¨‹
   TRevThread = class(TThread)
   private
-    FCityCode: string;  //µ±Ç°³ÇÊĞ´úÂë
-    FCityName: string;  //µ±Ç°³ÇÊĞÃû³Æ
-    FWd: string;        //µ±Ç°¹Ø¼ü×Ö²éÑ¯ url±àÂë
-    FKeyWord: string;   //µ±Ç°¹Ø¼ü×Ö²éÑ¯
+    FCityCode: string;  //å½“å‰åŸå¸‚ä»£ç 
+    FCityName: string;  //å½“å‰åŸå¸‚åç§°
+    FWd: string;        //å½“å‰å…³é”®å­—æŸ¥è¯¢ urlç¼–ç 
+    FKeyWord: string;   //å½“å‰å…³é”®å­—æŸ¥è¯¢
   protected
     procedure Execute; override;
   public
     constructor Create;
-    //»ñÈ¡JSON´®
+    //è·å–JSONä¸²
     function GetHTML(Url: string): string;
-    //Unicode×ªÖĞÎÄ±àÂë
+    //Unicodeè½¬ä¸­æ–‡ç¼–ç 
     function UnicodeToChinese(inputstr: string): string;
     procedure UpdateListView_Baidu;
     procedure UpdateListView_GaoDe;
     procedure UpdateListView_360;
     procedure UpdateListView_Tencent;
-    //»ñÈ¡°Ù¶ÈµØÍ¼²éÑ¯ĞÅÏ¢×ÜÌõÊı
+    //è·å–ç™¾åº¦åœ°å›¾æŸ¥è¯¢ä¿¡æ¯æ€»æ¡æ•°
     function GetBaiduMapInfoCnt(sCityCode, sWd: string): Integer;
-    //»ñÈ¡¸ßµÂµØÍ¼²éÑ¯ĞÅÏ¢×ÜÌõÊı
+    //è·å–é«˜å¾·åœ°å›¾æŸ¥è¯¢ä¿¡æ¯æ€»æ¡æ•°
     function GetGaodeMapInfoCnt(sCityCode, sWd: string): Integer;
-    //»ñÈ¡360µØÍ¼²éÑ¯ĞÅÏ¢×ÜÌõÊı
+    //è·å–360åœ°å›¾æŸ¥è¯¢ä¿¡æ¯æ€»æ¡æ•°
     function Get360MapInfoCnt(sCityCode, sWd: string): Integer;
-    //»ñÈ¡ÌÚÑ¶µØÍ¼²éÑ¯ĞÅÏ¢×ÜÌõÊı
+    //è·å–è…¾è®¯åœ°å›¾æŸ¥è¯¢ä¿¡æ¯æ€»æ¡æ•°
     function GetTencentMapInfoCnt(sCityCode, sWd: string): Integer;
     function GetHTTPS(Url: string): string;
     function GetUnixTime: string;
@@ -113,19 +113,19 @@ type
     procedure lvMapInfoClick(Sender: TObject);
   private
     { Private declarations }
-    FHttpFlag: Boolean; // ²éÑ¯±êÖ¾£¬µã»÷²éÑ¯Ê±£¬ÖÃÎªtrue£¬Í£Ö¹²éÑ¯ÖÃÎªfalse£»
-    FReg_code: string;  //»úÆ÷Âë
-    FActi_code: string; //¼¤»îÂë
+    FHttpFlag: Boolean; // æŸ¥è¯¢æ ‡å¿—ï¼Œç‚¹å‡»æŸ¥è¯¢æ—¶ï¼Œç½®ä¸ºtrueï¼Œåœæ­¢æŸ¥è¯¢ç½®ä¸ºfalseï¼›
+    FReg_code: string;  //æœºå™¨ç 
+    FActi_code: string; //æ¿€æ´»ç 
   public
     { Public declarations }
     FSqliteDataModule: TdmSQLite3;
     FBaiduMap_thread: TRevThread;
-    FMapFlag: Integer; //0£º°Ù¶ÈµØÍ¼  1£ºÌÚÑ¶µØÍ¼  2£º¸ßµÂµØÍ¼  3£º360µØÍ¼
-    //ÉèÖÃÖ÷½çÃæ×´Ì¬
+    FMapFlag: Integer; //0ï¼šç™¾åº¦åœ°å›¾  1ï¼šè…¾è®¯åœ°å›¾  2ï¼šé«˜å¾·åœ°å›¾  3ï¼š360åœ°å›¾
+    //è®¾ç½®ä¸»ç•Œé¢çŠ¶æ€
     procedure Update_lbl();
-    //»ñÈ¡Èí¼şÊÇ·ñ¼¤»î
+    //è·å–è½¯ä»¶æ˜¯å¦æ¿€æ´»
     function IsActivation: Boolean;
-    //´ò¿ªÈí¼ş³õÊ¼»¯¼¤»îĞÅÏ¢
+    //æ‰“å¼€è½¯ä»¶åˆå§‹åŒ–æ¿€æ´»ä¿¡æ¯
     procedure InitRegInfo;
     procedure ShowQrymsg();
     procedure ShowActimsg();
@@ -143,11 +143,11 @@ uses
   uSetCity, uRegister;
 
 const
-  sBaiduMapAppid = 'IWRYE8nGCyLWl9RmGXSEnYE4Qes1HX2x'; //°Ù¶ÈµØÍ¼ÃØÔ¿
-  sGaodeMapAppid = 'fd6d774a75d0e52bf9696fb9d079445e'; //¸ßµÂµØÍ¼ÃØÔ¿
+  sBaiduMapAppid = 'IWRYE8nGCyLWl9RmGXSEnYE4Qes1HX2x'; //ç™¾åº¦åœ°å›¾ç§˜é’¥
+  sGaodeMapAppid = 'fd6d774a75d0e52bf9696fb9d079445e'; //é«˜å¾·åœ°å›¾ç§˜é’¥
   //fd6d774a75d0e52bf9696fb9d079445e
   //f6d2e2a4644fa7d750d7e0bfbe14d23
-  sTencentMapAppid = '6PJBZ-CQXKD-WK54A-HGDWF-FSIJH-I5FWI'; //ÌÚÑ¶µØÍ¼ÃØÔ¿
+  sTencentMapAppid = '6PJBZ-CQXKD-WK54A-HGDWF-FSIJH-I5FWI'; //è…¾è®¯åœ°å›¾ç§˜é’¥
 
 procedure TfrmMapInfo.Act_AddcityExecute(Sender: TObject);
 begin
@@ -170,14 +170,14 @@ end;
 
 procedure TfrmMapInfo.Act_BarClickExecute(Sender: TObject);
 begin
-  group_Map.Caption := 'µ±Ç°µØÍ¼£º°Ù¶ÈµØÍ¼×ÛºÏËÑË÷';
+  group_Map.Caption := 'å½“å‰åœ°å›¾ï¼šç™¾åº¦åœ°å›¾ç»¼åˆæœç´¢';
 end;
 
 procedure TfrmMapInfo.Act_RegisterExecute(Sender: TObject);
 begin
   if not FHttpFlag then
   begin
-   //×¢²á´°¿Ú
+   //æ³¨å†Œçª—å£
     frmRegister := TfrmRegister.Create(self);
     with frmRegister do
     begin
@@ -191,7 +191,7 @@ begin
         frmRegister.Free;
       end;
     end;
-    //»ñÈ¡ÊÇ·ñ¼¤»îĞÅÏ¢
+    //è·å–æ˜¯å¦æ¿€æ´»ä¿¡æ¯
     FSqliteDataModule.GetSqlReginfo(FReg_code, FActi_code);
   end
   else
@@ -214,13 +214,13 @@ end;
 
 procedure TfrmMapInfo.btn_StartClick(Sender: TObject);
 begin
-  if (mmCity.Lines.Text = '') or (mmKeywd.Lines.Text = '') then
+  if (mmCity.Lines.Text = '') or (Trim(mmKeywd.Lines.Text) = '') then
   begin
-    Application.MessageBox('ÇëÑ¡Ôñ¡¾³ÇÊĞ¡¿ÒÔ¼°¡¾ĞĞÒµ¹Ø¼ü×Ö¡¿²éÑ¯£¡', '´íÎó', MB_OK + MB_ICONWARNING);
+    Application.MessageBox('è¯·é€‰æ‹©ã€åŸå¸‚ã€‘ä»¥åŠã€è¡Œä¸šå…³é”®å­—ã€‘æŸ¥è¯¢ï¼', 'é”™è¯¯', MB_OK + MB_ICONWARNING);
     Exit;
   end;
   lvMapInfo.Items.Clear;
-  //´´½¨µØÍ¼Êı¾İ½âÎöÏß³Ì
+  //åˆ›å»ºåœ°å›¾æ•°æ®è§£æçº¿ç¨‹
   FHttpFlag := True;
   setQryFlag;
   FBaiduMap_thread := TRevThread.Create();
@@ -269,7 +269,7 @@ begin
   if not FHttpFlag then
   begin
     FMapFlag := 3;
-    group_Map.Caption := 'µ±Ç°µØÍ¼£º360µØÍ¼×ÛºÏËÑË÷';
+    group_Map.Caption := 'å½“å‰åœ°å›¾ï¼š360åœ°å›¾ç»¼åˆæœç´¢';
   end
   else
     ShowQrymsg;
@@ -280,7 +280,7 @@ begin
   if not FHttpFlag then
   begin
     FMapFlag := 0;
-    group_Map.Caption := 'µ±Ç°µØÍ¼£º°Ù¶ÈµØÍ¼×ÛºÏËÑË÷';
+    group_Map.Caption := 'å½“å‰åœ°å›¾ï¼šç™¾åº¦åœ°å›¾ç»¼åˆæœç´¢';
   end
   else
     ShowQrymsg;
@@ -291,7 +291,7 @@ begin
   if not FHttpFlag then
   begin
     FMapFlag := 2;
-    group_Map.Caption := 'µ±Ç°µØÍ¼£º¸ßµÂµØÍ¼×ÛºÏËÑË÷';
+    group_Map.Caption := 'å½“å‰åœ°å›¾ï¼šé«˜å¾·åœ°å›¾ç»¼åˆæœç´¢';
   end
   else
     ShowQrymsg;
@@ -302,7 +302,7 @@ begin
   if not FHttpFlag then
   begin
     FMapFlag := 1;
-    group_Map.Caption := 'µ±Ç°µØÍ¼£ºÌÚÑ¶µØÍ¼×ÛºÏËÑË÷';
+    group_Map.Caption := 'å½“å‰åœ°å›¾ï¼šè…¾è®¯åœ°å›¾ç»¼åˆæœç´¢';
   end
   else
     ShowQrymsg;
@@ -328,22 +328,23 @@ begin
   if FHttpFlag then
   begin
     ShowQrymsg;
+    CanClose := False; //ä¿æŒç¨‹åºçš„æ‰§è¡Œ
     Exit;
   end;
 
-  if MessageDlg('È·¶¨ÒªÍË³öÂğ?', mtConfirmation, [mbOK, mbCancel], 0) = mrOK then
+  if Application.MessageBox(PChar('ç¡®å®šè¦é€€å‡ºå—?'), 'æç¤º', MB_YESNO + MB_ICONQUESTION + MB_DEFBUTTON1	) = IDYES then
   begin
-    application.Terminate; //¹Ø±Õ³ÌĞò
+    application.Terminate; //å…³é—­ç¨‹åº
   end
   else
-    CanClose := False; //±£³Ö³ÌĞòµÄÖ´ĞĞ
+    CanClose := False; //ä¿æŒç¨‹åºçš„æ‰§è¡Œ
 end;
 
 procedure TfrmMapInfo.FormCreate(Sender: TObject);
 var
   i: Integer;
 begin
-  group_Map.Caption := 'µ±Ç°µØÍ¼£º°Ù¶ÈµØÍ¼×ÛºÏËÑË÷';
+  group_Map.Caption := 'å½“å‰åœ°å›¾ï¼šç™¾åº¦åœ°å›¾ç»¼åˆæœç´¢';
   lvMapInfo.Clear;
 
   lvMapInfo.Columns.Clear;
@@ -353,14 +354,14 @@ begin
     lvMapInfo.Columns.Items[i].Width := 100;
     lvMapInfo.Columns.Items[i].Alignment := taCenter;
   end;
-  lvMapInfo.Columns.Items[1].Caption := '±àºÅ';
-  lvMapInfo.Columns.Items[2].Caption := 'µêÆÌÃû ';
-  lvMapInfo.Columns.Items[3].Caption := 'ÁªÏµµç»°';
-  lvMapInfo.Columns.Items[4].Caption := 'µØÍ¼×ø±ê';
-  lvMapInfo.Columns.Items[5].Caption := 'µØÖ·';
-  lvMapInfo.Columns.Items[6].Caption := 'ÇøÓò ';
-  lvMapInfo.Columns.Items[7].Caption := 'ĞĞÒµ';
-  lvMapInfo.Columns.Items[8].Caption := '¹Ø¼ü×Ö';
+  lvMapInfo.Columns.Items[1].Caption := 'ç¼–å·';
+  lvMapInfo.Columns.Items[2].Caption := 'åº—é“ºå ';
+  lvMapInfo.Columns.Items[3].Caption := 'è”ç³»ç”µè¯';
+  lvMapInfo.Columns.Items[4].Caption := 'åœ°å›¾åæ ‡';
+  lvMapInfo.Columns.Items[5].Caption := 'åœ°å€';
+  lvMapInfo.Columns.Items[6].Caption := 'åŒºåŸŸ ';
+  lvMapInfo.Columns.Items[7].Caption := 'è¡Œä¸š';
+  lvMapInfo.Columns.Items[8].Caption := 'å…³é”®å­—';
   lvMapInfo.Columns.Items[1].Width := 50;
   lvMapInfo.Columns.Items[2].Width := 150;
   lvMapInfo.Columns.Items[3].Width := 130;
@@ -371,14 +372,14 @@ begin
   lvMapInfo.ViewStyle := vsreport;
   lvMapInfo.GridLines := False;
 
-  //´´½¨Á¬½ÓsqliteµÄdatamodule
+  //åˆ›å»ºè¿æ¥sqliteçš„datamodule
   FSqliteDataModule := TdmSQLite3.Create(self);
   InitRegInfo;
 end;
 
 function TfrmMapInfo.IsActivation: Boolean;
 begin
-  //»ñÈ¡×¢²áĞÅÏ¢
+  //è·å–æ³¨å†Œä¿¡æ¯
   FSqliteDataModule.GetSqlReginfo(FReg_code, FActi_code);
   if strToMD5(FReg_code) <> FActi_code then
     Result := False
@@ -390,12 +391,12 @@ procedure TfrmMapInfo.InitRegInfo;
 var
   sGUID: string;
 begin
-  //»ñÈ¡×¢²áĞÅÏ¢
+  //è·å–æ³¨å†Œä¿¡æ¯
   FSqliteDataModule.GetSqlReginfo(FReg_code, FActi_code);
 
   sGUID := GetRegCode;
 
-  //Ã»ÓĞ×¢²áĞÅÏ¢£¬Ôòµ÷ÓÃÉú³É»úÆ÷Âë
+  //æ²¡æœ‰æ³¨å†Œä¿¡æ¯ï¼Œåˆ™è°ƒç”¨ç”Ÿæˆæœºå™¨ç 
   if FReg_code = '' then
   begin
     FSqliteDataModule.InsetInitinfo(sGUID, '');
@@ -432,12 +433,12 @@ end;
 
 procedure TfrmMapInfo.ShowActimsg;
 begin
-  MessageBox(Handle, 'Î´¼¤»î°æ±¾£¡', '´íÎó', MB_OK + MB_ICONWARNING);
+  MessageBox(Handle, 'æœªæ¿€æ´»ç‰ˆæœ¬ï¼', 'é”™è¯¯', MB_OK + MB_ICONWARNING);
 end;
 
 procedure TfrmMapInfo.ShowQrymsg;
 begin
-  MessageBox(Handle, '²éÑ¯ÖĞ£¬ÇëÉÔºó»òÕßÍ£Ö¹²éÑ¯£¡', 'ÌáÊ¾', MB_OK + MB_ICONWARNING);
+  MessageBox(Handle, 'æŸ¥è¯¢ä¸­ï¼Œè¯·ç¨åæˆ–è€…åœæ­¢æŸ¥è¯¢ï¼', 'æç¤º', MB_OK + MB_ICONWARNING);
 end;
 
 function TfrmMapInfo.strTOMD5(S: string): string;
@@ -476,9 +477,9 @@ procedure TRevThread.Execute;
 var
   i, j, k: Integer;
   sUrl_MapInfo, s: string;
-  nWdCnt: Integer;   //¹Ø¼ü×ÖĞĞÊı
-  sWd: string;       //¹Ø¼ü×Ö×ª»¯³ÉUrl±àÂë
-  nCityCnt: Integer; //³ÇÊĞĞĞÊı
+  nWdCnt: Integer;   //å…³é”®å­—è¡Œæ•°
+  sWd: string;       //å…³é”®å­—è½¬åŒ–æˆUrlç¼–ç 
+  nCityCnt: Integer; //åŸå¸‚è¡Œæ•°
 begin
   inherited;
   try
@@ -486,24 +487,27 @@ begin
     begin
       nWdCnt := frmMapInfo.mmKeywd.Lines.Count;
       nCityCnt := frmMapInfo.mmCity.Lines.Count;
-      for i := 0 to nCityCnt - 1 do   //°´¹Ø¼ü×ÖĞĞÊı * ³ÇÊĞĞĞÊı£¬À´È¡µÃÒª²éÑ¯µÄ´ÎÊı
+      for i := 0 to nCityCnt - 1 do   //æŒ‰å…³é”®å­—è¡Œæ•° * åŸå¸‚è¡Œæ•°ï¼Œæ¥å–å¾—è¦æŸ¥è¯¢çš„æ¬¡æ•°
       begin
         FCityName := frmMapInfo.mmCity.Lines[i];
         for j := 0 to nWdCnt - 1 do
         begin
           FKeyWord := frmMapInfo.mmKeywd.Lines[j];
+          if Trim(FKeyWord) = '' then
+            Continue;
+
           FWd := HTTPEncode(UTF8Encode(FKeyWord));
-          if frmMapInfo.FMapFlag = 0 then        //°Ù¶È
+          if frmMapInfo.FMapFlag = 0 then        //ç™¾åº¦
           begin
             FCityCode := frmMapInfo.FSqliteDataModule.GetCitycode_Baidu(FCityName);
             Synchronize(UpdateListView_Baidu);
           end
-          else if frmMapInfo.FMapFlag = 1 then    //ÌÚÑ¶
+          else if frmMapInfo.FMapFlag = 1 then    //è…¾è®¯
           begin
             FCityCode := FCityName;
             Synchronize(UpdateListView_Tencent);
           end
-          else if frmMapInfo.FMapFlag = 2 then    //¸ßµÂ
+          else if frmMapInfo.FMapFlag = 2 then    //é«˜å¾·
           begin
             FCityCode := frmMapInfo.FSqliteDataModule.GetCitycode_Gaode(FCityName);
             Synchronize(UpdateListView_GaoDe);
@@ -517,17 +521,17 @@ begin
       end;
     end;
   finally
-    //²éÑ¯Íê±Ï£¬ÖØÖÃ²éÑ¯×´Ì¬
+    //æŸ¥è¯¢å®Œæ¯•ï¼Œé‡ç½®æŸ¥è¯¢çŠ¶æ€
     frmMapInfo.FHttpFlag := False;
     frmMapInfo.setQryFlag;
     FreeOnTerminate := True;
-    Application.MessageBox('²éÑ¯Íê³É£¡', 'ÌáÊ¾', MB_OK + MB_ICONINFORMATION);
+    Application.MessageBox('æŸ¥è¯¢å®Œæˆï¼', 'æç¤º', MB_OK + MB_ICONINFORMATION);
   end;
 end;
 
 function TRevThread.Get360MapInfoCnt(sCityCode, sWd: string): Integer;
 var
-  //½âÎöjson
+  //è§£æjson
   AJson, AJson_Result: TQJson;
   sHTML: string;
   i: Integer;
@@ -545,7 +549,7 @@ begin
     if AJson.AsString = '' then
       Exit;
 
-    Result := AJson.ItemByName('pagesize').AsInteger;  // ×ÜµÄÒ³ÃæÊı
+    Result := AJson.ItemByName('pagesize').AsInteger;  // æ€»çš„é¡µé¢æ•°
   finally
     AJson.Free;
   end;
@@ -553,7 +557,7 @@ end;
 
 function TRevThread.GetBaiduMapInfoCnt(sCityCode, sWd: string): Integer;
 var
-  //½âÎöjson
+  //è§£æjson
   AJson, AJson_Result: TQJson;
   sHTML: string;
   i: Integer;
@@ -579,7 +583,7 @@ end;
 
 function TRevThread.GetTencentMapInfoCnt(sCityCode, sWd: string): Integer;
 var
-  //½âÎöjson
+  //è§£æjson
   AJson, AJson_Result: TQJson;
   sHTML: string;
   i: Integer;
@@ -606,7 +610,7 @@ end;
 
 function TRevThread.GetGaodeMapInfoCnt(sCityCode, sWd: string): Integer;
 var
-  //½âÎöjson
+  //è§£æjson
   AJson, AJson_Result: TQJson;
   sHTML: string;
   i: Integer;
@@ -623,7 +627,7 @@ begin
     if AJson.AsString = '' then
       Exit;
 
-    Result := AJson.ItemByName('count').AsInteger;  // ×ÜÊı
+    Result := AJson.ItemByName('count').AsInteger;  // æ€»æ•°
   finally
     AJson.Free;
   end;
@@ -638,7 +642,7 @@ var
 begin
   Result := '';
   try
-    //https»ñÈ¡³õÊ¼»¯
+    //httpsè·å–åˆå§‹åŒ–
     FidHttp_MapInfo := TIdHTTP.Create(nil);
     FidSSLIOHandlerSocketOpenSSL := TIdSSLIOHandlerSocketOpenSSL.Create(nil);
     FidSSLIOHandlerSocketOpenSSL.SSLOptions.Method := sslvSSLv23;
@@ -679,6 +683,8 @@ function TRevThread.GetPhoneNum(sPhone: string): string;
 var
   sStr: string;
 begin
+  //20180413,ä¿®å¤æ‰‹æœºå·ç é‡å¤bug
+  Result := '';
   if frmMapInfo.ChkPhone.Checked then
   begin
     Result := sPhone;
@@ -781,8 +787,8 @@ begin
       Result := Result + last;
       Exit;
     end;
-    top := Copy(inputstr, 1, index); // È¡³ö ±àÂë×Ö·ûÇ°µÄ ·Ç unic ±àÂëµÄ×Ö·û£¬ÈçÊı×Ö
-    temp := Copy(inputstr, index + 1, 6); // È¡³ö±àÂë£¬°üÀ¨ \u,Èç\u4e3f
+    top := Copy(inputstr, 1, index); // å–å‡º ç¼–ç å­—ç¬¦å‰çš„ é unic ç¼–ç çš„å­—ç¬¦ï¼Œå¦‚æ•°å­—
+    temp := Copy(inputstr, index + 1, 6); // å–å‡ºç¼–ç ï¼ŒåŒ…æ‹¬ \u,å¦‚\u4e3f
     Delete(temp, 1, 2);
     Delete(inputstr, 1, index + 6);
     Result := Result + top + WideChar(StrToInt('$' + temp));
@@ -791,25 +797,25 @@ end;
 
 procedure TRevThread.UpdateListView_360;
 var
-  //½âÎöjson
+  //è§£æjson
   AJson, AJson_content, AJson_ext: TQJson;
   sHTML: string;
   i, j: Integer;
   sUrl_MapInfo: string;
   sShopName, sTel, sPhone, sPoint, sPoi_address, sCityname, sStd_tag: string;
-  nNumCnt: Integer;  //360µØÍ¼²éÑ¯µÄ×ÜÌõÊı
-  nPageCnt: Integer; //360µØÍ¼¶ÔÓ¦Ò»¸ö³ÇÊĞµÄ²éÑ¯ÌõÊı
+  nNumCnt: Integer;  //360åœ°å›¾æŸ¥è¯¢çš„æ€»æ¡æ•°
+  nPageCnt: Integer; //360åœ°å›¾å¯¹åº”ä¸€ä¸ªåŸå¸‚çš„æŸ¥è¯¢æ¡æ•°
   Qryflag: Boolean;
   sUnixTime: string;
 begin
-  //»ñÈ¡×ÜÌõÊı
+  //è·å–æ€»æ¡æ•°
   FCityCode := HTTPEncode(UTF8Encode(FCityCode));
   nPageCnt := Get360MapInfoCnt(FCityCode, FWd);
  {
-   batch=1 µÚÒ»Ò³ ´Ó1¿ªÊ¼¼ÆÊı
-   number=10 Ã¿Ò³10ĞĞ
-   keyword=Íæ¾ß
-   cityname= ³ÇÊĞÃû
+   batch=1 ç¬¬ä¸€é¡µ ä»1å¼€å§‹è®¡æ•°
+   number=10 æ¯é¡µ10è¡Œ
+   keyword=ç©å…·
+   cityname= åŸå¸‚å
  }
   for j := 0 to nPageCnt do
   begin
@@ -831,13 +837,13 @@ begin
       AJson_content := AJson.ItemByName('poi');
 
     {
-      360µØÍ¼ÉÌ¼ÒĞÅÏ¢
-      µêÆÌÃû:poi\name
-      ÁªÏµµç»°:poi\tel
-      µØÍ¼×ø±ê:poi\x + poi\x
-      ÇøÓò:poi\city
-      µØÖ·:poi\address
-      ĞĞÒµ:poi\type
+      360åœ°å›¾å•†å®¶ä¿¡æ¯
+      åº—é“ºå:poi\name
+      è”ç³»ç”µè¯:poi\tel
+      åœ°å›¾åæ ‡:poi\x + poi\x
+      åŒºåŸŸ:poi\city
+      åœ°å€:poi\address
+      è¡Œä¸š:poi\type
    }
       for i := 0 to AJson_content.Count - 1 do
       begin
@@ -851,13 +857,13 @@ begin
         except
           Break;
         end;
-        //´¦ÀíÊÖ»úºÅÂë£¬Îª¿ÕµÄ²»Ìí¼ÓÏÔÊ¾
+        //å¤„ç†æ‰‹æœºå·ç ï¼Œä¸ºç©ºçš„ä¸æ·»åŠ æ˜¾ç¤º
         sPhone := GetPhoneNum(sPhone);
         sPhone := SetPhoneNum(sPhone);
         if Trim(sPhone) = '' then
           Continue;
 
-        //listviewÔö¼ÓÊı¾İ
+        //listviewå¢åŠ æ•°æ®
         frmMapInfo.lvMapInfo.Items.BeginUpdate;
         with frmMapInfo.lvMapInfo.items.add do
         begin
@@ -888,27 +894,27 @@ end;
 
 procedure TRevThread.UpdateListView_Baidu;
 var
-  //½âÎöjson
+  //è§£æjson
   AJson, AJson_content: TQJson;
   sHTML: string;
   i, j: Integer;
   sUrl_MapInfo: string;
   sShopName, sTel, sPhone, sPoint, sPoi_address, sCityname, sStd_tag: string;
-  nNumCnt: Integer;  //°Ù¶ÈµØÍ¼²éÑ¯µÄ×ÜÌõÊı
-  nPageCnt: Integer; //°Ù¶ÈµØÍ¼¶ÔÓ¦Ò»¸ö³ÇÊĞµÄ²éÑ¯ÌõÊı
+  nNumCnt: Integer;  //ç™¾åº¦åœ°å›¾æŸ¥è¯¢çš„æ€»æ¡æ•°
+  nPageCnt: Integer; //ç™¾åº¦åœ°å›¾å¯¹åº”ä¸€ä¸ªåŸå¸‚çš„æŸ¥è¯¢æ¡æ•°
   Qryflag: Boolean;
 begin
-  { °Ù¶ÈµØÍ¼ÉÌ¼ÒĞÅÏ¢
-   µêÆÌÃû:content\ext\detail_info\name
-   ÁªÏµµç»°:content\ext\detail_info\phone
-   µØÍ¼×ø±ê:
+  { ç™¾åº¦åœ°å›¾å•†å®¶ä¿¡æ¯
+   åº—é“ºå:content\ext\detail_info\name
+   è”ç³»ç”µè¯:content\ext\detail_info\phone
+   åœ°å›¾åæ ‡:
    content\ext\detail_info\point\x
    content\ext\detail_info\point\x
-   µØÖ·:content\ext\detail_info\poi_address
-   ÇøÓò:current_city\name
-   ĞĞÒµ:content\ext\detail_info\std_tag
+   åœ°å€:content\ext\detail_info\poi_address
+   åŒºåŸŸ:current_city\name
+   è¡Œä¸š:content\ext\detail_info\std_tag
   }
-  //»ñÈ¡×ÜÌõÊı
+  //è·å–æ€»æ¡æ•°
   {
   nNumCnt := GetBaiduMapInfoCnt(FCityCode, FWd);
   if nNumCnt < 0 then
@@ -918,7 +924,7 @@ begin
   if (nNumCnt mod 10) > 0 then
     nPageCnt := nPageCnt + 1;
 
-  if nPageCnt = 0 then     //·ÀÖ¹×ÜÌõÊıĞ¡ÓÚ10µÄÇé¿ö
+  if nPageCnt = 0 then     //é˜²æ­¢æ€»æ¡æ•°å°äº10çš„æƒ…å†µ
     nPageCnt := 1;
   }
   Qryflag := True;
@@ -959,13 +965,13 @@ begin
           except
             Break;
           end;
-          //´¦ÀíÊÖ»úºÅÂë£¬Îª¿ÕµÄ²»Ìí¼ÓÏÔÊ¾
+          //å¤„ç†æ‰‹æœºå·ç ï¼Œä¸ºç©ºçš„ä¸æ·»åŠ æ˜¾ç¤º
           sPhone := GetPhoneNum(sPhone);
           sPhone := SetPhoneNum(sPhone);
           if Trim(sPhone) = '' then
             Continue;
 
-          //listviewÔö¼ÓÊı¾İ
+          //listviewå¢åŠ æ•°æ®
           frmMapInfo.lvMapInfo.Items.BeginUpdate;
           with frmMapInfo.lvMapInfo.items.add do
           begin
@@ -979,7 +985,7 @@ begin
             subitems.add(FKeyWord);
           end;
           frmMapInfo.lvMapInfo.Items.EndUpdate;
-          //¶¨Î»µ½×îºóÒ»ÌõÊı¾İ
+          //å®šä½åˆ°æœ€åä¸€æ¡æ•°æ®
           frmMapInfo.lvMapInfo.Items.Item[frmMapInfo.lvMapInfo.Items.Count - 1].MakeVisible(false);
           frmMapInfo.lvMapInfo.SetFocus;
 
@@ -1000,37 +1006,36 @@ end;
 
 procedure TRevThread.UpdateListView_GaoDe;
 var
-  //½âÎöjson
+  //è§£æjson
   AJson, AJson_content, AJson_ext: TQJson;
   sHTML: string;
   i, j: Integer;
   sUrl_MapInfo: string;
   sShopName, sTel, sPhone, sPoint, sPoi_address, sCityname, sStd_tag: string;
-  nNumCnt: Integer;  //¸ßµÂµØÍ¼²éÑ¯µÄ×ÜÌõÊı
-  nPageCnt: Integer; //¸ßµÂµØÍ¼¶ÔÓ¦Ò»¸ö³ÇÊĞµÄ²éÑ¯ÌõÊı
+  nNumCnt: Integer;  //é«˜å¾·åœ°å›¾æŸ¥è¯¢çš„æ€»æ¡æ•°
+  nPageCnt: Integer; //é«˜å¾·åœ°å›¾å¯¹åº”ä¸€ä¸ªåŸå¸‚çš„æŸ¥è¯¢æ¡æ•°
   Qryflag: Boolean;
 begin
 {
-  //»ñÈ¡×ÜÌõÊı
+  //è·å–æ€»æ¡æ•°
   nNumCnt := GetGaodeMapInfoCnt(FCityCode, FWd);
   if nNumCnt < 0 then
     Exit;
 
   nPageCnt := nNumCnt div 10;
-  if nPageCnt = 0 then     //·ÀÖ¹×ÜÌõÊıĞ¡ÓÚ10µÄÇé¿ö
+  if nPageCnt = 0 then     //é˜²æ­¢æ€»æ¡æ•°å°äº10çš„æƒ…å†µ
     nPageCnt := 1;  }
  {
-   page=1 µÚÒ»Ò³ ´Ó1¿ªÊ¼¼ÆÊı
-   offset=10 Ã¿Ò³10ĞĞ
-   keywords=Íæ¾ß
-   key=97e813f8def77584512baea65fcd2c46  --Õâ¸ökeyÓĞĞ§
-   city=110100 ³ÇÊĞ´úÂë
+   page=1 ç¬¬ä¸€é¡µ ä»1å¼€å§‹è®¡æ•°
+   offset=10 æ¯é¡µ10è¡Œ
+   keywords=ç©å…·
+   key=97e813f8def77584512baea65fcd2c46  --è¿™ä¸ªkeyæœ‰æ•ˆ
+   city=110100 åŸå¸‚ä»£ç 
  }
   Qryflag := True;
   j := 1;
   while Qryflag do
   begin
-    sPhone := '';
     if not (frmMapInfo.FHttpFlag) then
       Exit;
     sUrl_MapInfo := 'http://restapi.amap.com/v3/place/text?s=rsv3&children=&key=' + sGaodeMapAppid + '&offset=10&page=' + IntToStr(j) + '&city=' + FCityCode + '&extensions=all&language=zh_cn&callback=jsonp_925081_&keywords=' + FWd;
@@ -1049,13 +1054,13 @@ begin
       if AJson_content.Count < 10 then
         Qryflag := False;
     {
-      ¸ßµÂµØÍ¼ÉÌ¼ÒĞÅÏ¢
-      µêÆÌÃû:pois\name
-      ÁªÏµµç»°:pois\tel
-      µØÍ¼×ø±ê:pois\location
-      ÇøÓò:pois\cityname
-      µØÖ·:pois\adname +  pois\address
-      ĞĞÒµ:pois\type
+      é«˜å¾·åœ°å›¾å•†å®¶ä¿¡æ¯
+      åº—é“ºå:pois\name
+      è”ç³»ç”µè¯:pois\tel
+      åœ°å›¾åæ ‡:pois\location
+      åŒºåŸŸ:pois\cityname
+      åœ°å€:pois\adname +  pois\address
+      è¡Œä¸š:pois\type
    }
       for i := 0 to AJson_content.Count - 1 do
       begin
@@ -1069,7 +1074,7 @@ begin
         except
           Break;
         end;
-                //´¦ÀíÊÖ»úºÅÂë£¬Îª¿ÕµÄ²»Ìí¼ÓÏÔÊ¾
+                //å¤„ç†æ‰‹æœºå·ç ï¼Œä¸ºç©ºçš„ä¸æ·»åŠ æ˜¾ç¤º
         if Trim(sPhone) = '[]' then
           Continue;
         sPhone := GetPhoneNum(sPhone);
@@ -1077,7 +1082,7 @@ begin
         if Trim(sPhone) = '' then
           Continue;
 
-        //listviewÔö¼ÓÊı¾İ
+        //listviewå¢åŠ æ•°æ®
         frmMapInfo.lvMapInfo.Items.BeginUpdate;
         with frmMapInfo.lvMapInfo.items.add do
         begin
@@ -1091,7 +1096,7 @@ begin
           subitems.add(FKeyWord);
         end;
         frmMapInfo.lvMapInfo.Items.EndUpdate;
-        //¶¨Î»µ½×îºóÒ»ÌõÊı¾İ
+        //å®šä½åˆ°æœ€åä¸€æ¡æ•°æ®
         frmMapInfo.lvMapInfo.Items.Item[frmMapInfo.lvMapInfo.Items.Count - 1].MakeVisible(false);
         frmMapInfo.lvMapInfo.SetFocus;
 
@@ -1111,29 +1116,29 @@ end;
 
 procedure TRevThread.UpdateListView_Tencent;
 var
-  //½âÎöjson
+  //è§£æjson
   AJson, AJson_content, AJson_ext: TQJson;
   sHTML: string;
   i, j: Integer;
   sUrl_MapInfo: string;
   sShopName, sTel, sPhone, sPoint, sPoi_address, sCityname, sStd_tag: string;
-  nNumCnt: Integer;  //ÌÚÑ¶µØÍ¼²éÑ¯µÄ×ÜÌõÊı
-  nPageCnt: Integer; //ÌÚÑ¶µØÍ¼¶ÔÓ¦Ò»¸ö³ÇÊĞµÄ²éÑ¯ÌõÊı
+  nNumCnt: Integer;  //è…¾è®¯åœ°å›¾æŸ¥è¯¢çš„æ€»æ¡æ•°
+  nPageCnt: Integer; //è…¾è®¯åœ°å›¾å¯¹åº”ä¸€ä¸ªåŸå¸‚çš„æŸ¥è¯¢æ¡æ•°
   Qryflag: Boolean;
   sUnixTime: string;
   nStatus: Integer;
   sCityCode: string;
 begin
-  //»ñÈ¡×ÜÌõÊı
+  //è·å–æ€»æ¡æ•°
   sCityCode := HTTPEncode(UTF8Encode(FCityCode));
   nNumCnt := GetTencentMapInfoCnt(sCityCode, FWd);
  {
-   boundary=region(±±¾©,0)  ËÑË÷·¶Î§
-   page_size=10 Ã¿Ò³10ĞĞ
-   page_index =1 µÚ¼¸Ò³
-   keyword=Íæ¾ß
-   key= ¿ª·¢ÕßÃØÔ¿
-   //API ²Î¿¼ÍøÖ·£º http://lbs.qq.com/webservice_v1/guide-search.html
+   boundary=region(åŒ—äº¬,0)  æœç´¢èŒƒå›´
+   page_size=10 æ¯é¡µ10è¡Œ
+   page_index =1 ç¬¬å‡ é¡µ
+   keyword=ç©å…·
+   key= å¼€å‘è€…ç§˜é’¥
+   //API å‚è€ƒç½‘å€ï¼š http://lbs.qq.com/webservice_v1/guide-search.html
  }
   Qryflag := True;
   j := 1;
@@ -1163,13 +1168,13 @@ begin
       if (nNumCnt < j*20) then
         Exit;
     {
-      ÌÚÑ¶µØÍ¼ÉÌ¼ÒĞÅÏ¢
-      µêÆÌÃû:data\title
-      ÁªÏµµç»°:data\tel
-      µØÍ¼×ø±ê:data\location\lat + data\location\lng
-      ÇøÓò:data\ad_info\city
-      µØÖ·:data\address
-      ĞĞÒµ:data\category
+      è…¾è®¯åœ°å›¾å•†å®¶ä¿¡æ¯
+      åº—é“ºå:data\title
+      è”ç³»ç”µè¯:data\tel
+      åœ°å›¾åæ ‡:data\location\lat + data\location\lng
+      åŒºåŸŸ:data\ad_info\city
+      åœ°å€:data\address
+      è¡Œä¸š:data\category
    }
       for i := 0 to AJson_content.Count - 1 do
       begin
@@ -1183,13 +1188,13 @@ begin
         except
           Break;
         end;
-        //´¦ÀíÊÖ»úºÅÂë£¬Îª¿ÕµÄ²»Ôö¼ÓÏÔÊ¾
+        //å¤„ç†æ‰‹æœºå·ç ï¼Œä¸ºç©ºçš„ä¸å¢åŠ æ˜¾ç¤º
         sPhone := GetPhoneNum(sPhone);
         sPhone := SetPhoneNum(sPhone);
         if Trim(sPhone) = '' then
           Continue;
 
-        //listviewÔö¼ÓÊı¾İ
+        //listviewå¢åŠ æ•°æ®
         frmMapInfo.lvMapInfo.Items.BeginUpdate;
         with frmMapInfo.lvMapInfo.items.add do
         begin
@@ -1203,7 +1208,7 @@ begin
           subitems.add(FKeyWord);
         end;
         frmMapInfo.lvMapInfo.Items.EndUpdate;
-        //¶¨Î»µ½×îºóÒ»ÌõÊı¾İ
+        //å®šä½åˆ°æœ€åä¸€æ¡æ•°æ®
         frmMapInfo.lvMapInfo.Items.Item[frmMapInfo.lvMapInfo.Items.Count - 1].MakeVisible(false);
         frmMapInfo.lvMapInfo.SetFocus;
 

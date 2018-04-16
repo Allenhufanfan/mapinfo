@@ -6,9 +6,9 @@ uses
   System.SysUtils, SQLiteTable3;
 
 
-//百度地图通过城市名获取对应的城市代码
+//鐧惧害鍦板浘閫氳繃鍩庡競鍚嶈幏鍙栧搴旂殑鍩庡競浠ｇ爜
 function GetCitycode_Baidu(sCityName: string): string;
-//高德地图通过城市名获取对应的城市代码
+//楂樺痉鍦板浘閫氳繃鍩庡競鍚嶈幏鍙栧搴旂殑鍩庡競浠ｇ爜
 function GetCitycode_Gaode(sCityName: string): string;
 
 //function GetRegisterInfo(): Boolean;

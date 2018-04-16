@@ -2,7 +2,7 @@ unit uSQLiteUtils;
 
 interface
 
-// Ê¹ÓÃ UniDaC ×é¼ş
+// ä½¿ç”¨ UniDaC ç»„ä»¶
 
 uses
   Classes, SysUtils, StrUtils, Forms, DB, LiteCallUni,
@@ -26,7 +26,7 @@ implementation
 
 function CreateSQLite3DB(const DatabaseFile: String): TUniConnection;
 begin
-  Result := TUniConnection.Create(Application);  // ÓÃ Nil ÔÚ°ì¹«Ê±»áÍË³öÒì³£
+  Result := TUniConnection.Create(Application);  // ç”¨ Nil åœ¨åŠå…¬æ—¶ä¼šé€€å‡ºå¼‚å¸¸
   Result.Database := DatabaseFile;
   Result.ProviderName := 'SQLite';
   Result.LoginPrompt := False;
@@ -53,10 +53,10 @@ begin
   if UpperCase(SQL) = 'COMMIT' then
     Exit;
     
-  // SQLite Êı¾İ¿âÊÇĞ´¶ÀÕ¼µÄ
-  // ATTACH/DETACH DATABASE ²»ÄÜ´ò¿ªÊÂÎñ
+  // SQLite æ•°æ®åº“æ˜¯å†™ç‹¬å çš„
+  // ATTACH/DETACH DATABASE ä¸èƒ½æ‰“å¼€äº‹åŠ¡
   AttachDB := (Pos('ATTACH', SQL) in [1..3]);
-  if AttachDB then             // ÔÊĞí³öÏÖ¹Ø¼ü´Ê <DB_PATH>/<DATABASE_PATH>, Ìæ»»Â·¾¶
+  if AttachDB then             // å…è®¸å‡ºç°å…³é”®è¯ <DB_PATH>/<DATABASE_PATH>, æ›¿æ¢è·¯å¾„
   begin
     DatabasePath := ExtractFilePath(Query.Connection.Database);
     SQL := StringReplace(SQL, '<DB_PATH>', DatabasePath, [rfReplaceAll, rfIgnoreCase]);
@@ -73,7 +73,7 @@ begin
         Query.Active := False;
 
       Query.SQL.Text := SQL;
-//      Query.SQL.SaveToFile('exec.sql');      // µ÷ÊÔ
+//      Query.SQL.SaveToFile('exec.sql');      // è°ƒè¯•
       Query.Execute;
 
       if AutoTransaction or AttachDB then
@@ -117,7 +117,7 @@ begin
     if DoDisconnect then
       Connected := False
     else
-    if not InTransaction then          // ²»Æô¶¯Ê±·Ç³£Âı
+    if not InTransaction then          // ä¸å¯åŠ¨æ—¶éå¸¸æ…¢
       StartTransaction;
   end;
 end;
@@ -128,7 +128,7 @@ begin
   begin
     if not Connected then
       Connected := True;
-    if not InTransaction then          // ²»Æô¶¯Ê±·Ç³£Âı
+    if not InTransaction then          // ä¸å¯åŠ¨æ—¶éå¸¸æ…¢
       StartTransaction;
   end;
 end;

@@ -61,7 +61,7 @@ procedure TfrmRegister.btn_AcitClick(Sender: TObject);
 var
   bResult: Boolean;
 begin
-   //¼¤»îÈí¼ş
+   //æ¿€æ´»è½¯ä»¶
   FAddflag := True;
   GetIndentify;
 end;
@@ -102,7 +102,7 @@ end;
 
 procedure TfrmRegister.InConnectionAfterConnect(Sender: TObject);
 begin
-  //µÇÂ¼
+  //ç™»å½•
   InCertifyClient.UserName := '123';
   InCertifyClient.Password := '456';
   InCertifyClient.Login;
@@ -122,19 +122,22 @@ begin
           AJson_result.Parse(Result.AsString['result']);
           if AJson_result.ItemByName('errorcode').AsInteger = 0 then
           begin
-            //ÑéÖ¤³É¹¦£¬Ğ´Èë
+            //éªŒè¯æˆåŠŸï¼Œå†™å…¥
             bInsertResult := frmMapInfo.FSqliteDataModule.SetSqlReginfo(edt_Regcode.Text, edt_ActiCode.Text);
             if bInsertResult then
-              Application.MessageBox('×¢²á³É¹¦', 'ÌáÊ¾', MB_OK + MB_ICONINFORMATION)
+            begin
+              Application.MessageBox('æ³¨å†ŒæˆåŠŸ', 'æç¤º', MB_OK + MB_ICONINFORMATION);
+              edt_ActiCode.Enabled := False;
+            end
             else
-              Application.MessageBox('×¢²áÊ§°Ü[-100]£¬ÇëÁªÏµ¿Í·ş', '´íÎó', MB_OK + MB_ICONSTOP);
+              Application.MessageBox('æ³¨å†Œå¤±è´¥[-100]ï¼Œè¯·è”ç³»å®¢æœ', 'é”™è¯¯', MB_OK + MB_ICONSTOP);
           end
           else
-            Application.MessageBox('ĞòÁĞºÅ´íÎó,×¢²áÊ§°Ü[-200]£¬ÇëÁªÏµ¿Í·ş', '´íÎó', MB_OK + MB_ICONSTOP);
+            Application.MessageBox('åºåˆ—å·é”™è¯¯,æ³¨å†Œå¤±è´¥[-200]ï¼Œè¯·è”ç³»å®¢æœ', 'é”™è¯¯', MB_OK + MB_ICONSTOP);
         end;
       arFail:
         ShowMessage(Result.AsString['error']);
-        //Application.MessageBox('×¢²áÊ§°Ü[-300]£¬ÇëÁªÏµ¿Í·ş', '´íÎó', MB_OK + MB_ICONSTOP);
+        //Application.MessageBox('æ³¨å†Œå¤±è´¥[-300]ï¼Œè¯·è”ç³»å®¢æœ', 'é”™è¯¯', MB_OK + MB_ICONSTOP);
     end;
   finally
     AJson_result.Free;
@@ -148,21 +151,21 @@ begin
   if edt_ActiCode.Text = '' then
   begin
     edt_ActiCode.Enabled := True;
-    Panel1.Caption := 'Èí¼ş×¢²á-Î´×¢²á';
+    Panel1.Caption := 'è½¯ä»¶æ³¨å†Œ-æœªæ³¨å†Œ';
     InConnection.Active := True;
   end
   else
   begin
     edt_ActiCode.Enabled :=False;
     btn_Acit.Enabled := False;
-    Panel1.Caption := 'Èí¼ş×¢²á-ÒÑ×¢²á';
+    Panel1.Caption := 'è½¯ä»¶æ³¨å†Œ-å·²æ³¨å†Œ';
   end;
   Panel1.Font.Color := clRed;
 end;
 
 procedure TfrmRegister.Showmsg;
 begin
-   MessageBox(Handle, 'ÒÑ¸´ÖÆµ½¼ôÇĞ°å£¡', 'ÌáÊ¾', MB_OK + MB_ICONINFORMATION);
+   MessageBox(Handle, 'å·²å¤åˆ¶åˆ°å‰ªåˆ‡æ¿ï¼', 'æç¤º', MB_OK + MB_ICONINFORMATION);
 end;
 
 end.

@@ -48,7 +48,7 @@ begin
     begin
       if (TreeList_city.Root.Items[i].Texts[0] = sAarea_name) then
       begin
-        //ÓĞÖ÷½Úµã£¬ÔòÖ±½ÓÔö¼Ó×Ó½Úµã
+        //æœ‰ä¸»èŠ‚ç‚¹ï¼Œåˆ™ç›´æ¥å¢åŠ å­èŠ‚ç‚¹
         vNode := TreeList_city.Root.Items[i];
         with vNode.AddChild do
         begin
@@ -58,7 +58,7 @@ begin
         exit;
       end;
     end;
-    //Ã»ÓĞÕÒµ½Ö÷½Úµã£¬Ö±½ÓÔö¼ÓÖ÷½ÚµãºÍ×Ó½Úµã
+    //æ²¡æœ‰æ‰¾åˆ°ä¸»èŠ‚ç‚¹ï¼Œç›´æ¥å¢åŠ ä¸»èŠ‚ç‚¹å’Œå­èŠ‚ç‚¹
     vNode := TreeList_city.Add;
     vNode.CheckGroupType := ncgCheckGroup;
     vNode.Values[0] := sAarea_name;
@@ -111,7 +111,7 @@ var
   MyStringList: TStringList;
 begin
   MyStringlist := TStringList.Create;
-  //±éÀúËùÓĞ½Úµã£¬»ñÈ¡Ñ¡ÔñµÄ³ÇÊĞ
+  //éå†æ‰€æœ‰èŠ‚ç‚¹ï¼Œè·å–é€‰æ‹©çš„åŸå¸‚
   for i := 0 to TreeList_city.AbsoluteCount - 1 do
   begin
     if TreeList_city.AbsoluteItems[i].Checked then

@@ -19,17 +19,17 @@ function strToMD5(S: string): string;
 implementation
 
 const
-  NCF_VIRTUAL = $01; //  ËµÃ÷×é¼şÊÇ¸öĞéÄâÊÊÅäÆ÷
-  NCF_SOFTWARE_ENUMERATED = $02; //  ËµÃ÷×é¼şÊÇÒ»¸öÈí¼şÄ£ÄâµÄÊÊÅäÆ÷
-  NCF_PHYSICAL = $04; //  ËµÃ÷×é¼şÊÇÒ»¸öÎïÀíÊÊÅäÆ÷
-  NCF_HIDDEN = $08;  //ËµÃ÷×é¼ş²»ÏÔÊ¾ÓÃ»§½Ó¿Ú
-  NCF_NO_SERVICE = $10; //  ËµÃ÷×é¼şÃ»ÓĞÏà¹ØµÄ·şÎñ(Éè±¸Çı¶¯³ÌĞò)
-  NCF_NOT_USER_REMOVABLE = $20;  // ËµÃ÷²»ÄÜ±»ÓÃ»§É¾³ı(ÀıÈç£¬Í¨¹ı¿ØÖÆÃæ°å»òÉè±¸¹ÜÀíÆ÷)
-  NCF_MULTIPORT_INSTANCED_ADAPTER = $40; //  ËµÃ÷×é¼şÓĞ¶à¸ö¶Ë¿Ú£¬Ã¿¸ö¶Ë ¿Ú×÷Îªµ¥¶ÀµÄÉè±¸°²×°¡£
-                                          //  Ã¿¸ö ¶Ë¿ÚÓĞ×Ô¼ºµÄhw_id(×é¼şID) ²¢¿É±»µ¥¶À°²×°£¬
-                                          //  ÕâÖ»ÊÊºÏÓÚ EISAÊÊÅäÆ÷
-  NCF_HAS_UI = $80; // ËµÃ÷×é¼şÖ§³ÖÓÃ»§½Ó¿Ú(ÀıÈç£¬Advanced Page»òCustomer  Properties Sheet)
-  NCF_FILTER = $400; //  ËµÃ÷×é¼şÊÇÒ»¸ö¹ıÂËÆ÷
+  NCF_VIRTUAL = $01; //  è¯´æ˜ç»„ä»¶æ˜¯ä¸ªè™šæ‹Ÿé€‚é…å™¨
+  NCF_SOFTWARE_ENUMERATED = $02; //  è¯´æ˜ç»„ä»¶æ˜¯ä¸€ä¸ªè½¯ä»¶æ¨¡æ‹Ÿçš„é€‚é…å™¨
+  NCF_PHYSICAL = $04; //  è¯´æ˜ç»„ä»¶æ˜¯ä¸€ä¸ªç‰©ç†é€‚é…å™¨
+  NCF_HIDDEN = $08;  //è¯´æ˜ç»„ä»¶ä¸æ˜¾ç¤ºç”¨æˆ·æ¥å£
+  NCF_NO_SERVICE = $10; //  è¯´æ˜ç»„ä»¶æ²¡æœ‰ç›¸å…³çš„æœåŠ¡(è®¾å¤‡é©±åŠ¨ç¨‹åº)
+  NCF_NOT_USER_REMOVABLE = $20;  // è¯´æ˜ä¸èƒ½è¢«ç”¨æˆ·åˆ é™¤(ä¾‹å¦‚ï¼Œé€šè¿‡æ§åˆ¶é¢æ¿æˆ–è®¾å¤‡ç®¡ç†å™¨)
+  NCF_MULTIPORT_INSTANCED_ADAPTER = $40; //  è¯´æ˜ç»„ä»¶æœ‰å¤šä¸ªç«¯å£ï¼Œæ¯ä¸ªç«¯ å£ä½œä¸ºå•ç‹¬çš„è®¾å¤‡å®‰è£…ã€‚
+                                          //  æ¯ä¸ª ç«¯å£æœ‰è‡ªå·±çš„hw_id(ç»„ä»¶ID) å¹¶å¯è¢«å•ç‹¬å®‰è£…ï¼Œ
+                                          //  è¿™åªé€‚åˆäº EISAé€‚é…å™¨
+  NCF_HAS_UI = $80; // è¯´æ˜ç»„ä»¶æ”¯æŒç”¨æˆ·æ¥å£(ä¾‹å¦‚ï¼ŒAdvanced Pageæˆ–Customer  Properties Sheet)
+  NCF_FILTER = $400; //  è¯´æ˜ç»„ä»¶æ˜¯ä¸€ä¸ªè¿‡æ»¤å™¨
 
 function IsPhysicalAdapter(sAdapterGUID: string; bOnlyPCI: Boolean = False): Boolean;
 const
@@ -99,19 +99,19 @@ begin
       try
         sGUID := string(AnsiString(Work.AdapterName));
         sTmp := string(AnsiString(Work.Description));
-        // Ãû³ÆÃèÊö³öÏÖVMWare£¬Ö±½ÓºöÂÔ
+        // åç§°æè¿°å‡ºç°VMWareï¼Œç›´æ¥å¿½ç•¥
         if Pos('VMWare', sTmp) > 0 then
           Continue;
 
-        // Ãû³ÆÃèÊö³öÏÖadapter£¬Ö±½ÓºöÂÔ
+        // åç§°æè¿°å‡ºç°adapterï¼Œç›´æ¥å¿½ç•¥
         //if Pos(' ADAPTER',UpperCase(sTmp)) > 0 then
         //  Continue;
 
-        // ÅäÖÃµÄIDµØÖ·²»Õı³££¬ºöÂÔ
+        // é…ç½®çš„IDåœ°å€ä¸æ­£å¸¸ï¼Œå¿½ç•¥
         if Work.AddressLength = 0 then
           Continue;
 
-        // ½«Íø¿¨MACµØÖ·×ª³É×Ö·û´®
+        // å°†ç½‘å¡MACåœ°å€è½¬æˆå­—ç¬¦ä¸²
         sLastMAC := '';
         for I := 0 to Work.AddressLength - 1 do
         begin
@@ -121,19 +121,19 @@ begin
         if sFirstMAC = '' then
           sFirstMAC := sLastMAC;
 
-        // ²»ÊÇÎïÀíÍø¿¨£¬ºöÂÔ
+        // ä¸æ˜¯ç‰©ç†ç½‘å¡ï¼Œå¿½ç•¥
         if not IsPhysicalAdapter(sGUID) then
           Continue;
 
         Result := sLastMAC;
 
-        //ÕÒµ½µÚÒ»¸öÎïÀíÍø¿¨ºóÍË³ö
+        //æ‰¾åˆ°ç¬¬ä¸€ä¸ªç‰©ç†ç½‘å¡åé€€å‡º
         Break;
       finally
         Work := Work.Next;
       end;
     end;
-    // ÕÒ²»µ½ÎïÀíÍø¿¨MAC£¬·µ»ØµÚÒ»¸ö¼´¿É
+    // æ‰¾ä¸åˆ°ç‰©ç†ç½‘å¡MACï¼Œè¿”å›ç¬¬ä¸€ä¸ªå³å¯
     if Result = '' then
       Result := sFirstMAC;
   finally

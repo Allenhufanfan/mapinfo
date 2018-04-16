@@ -212,7 +212,7 @@ object frmRegister: TfrmRegister
   end
   object InConnection: TInConnection
     MessageClient = InMessageClient
-    ServerAddr = '120.25.232.15'
+    ServerAddr = '47.106.94.188'
     AfterConnect = InConnectionAfterConnect
     Left = 272
     Top = 80

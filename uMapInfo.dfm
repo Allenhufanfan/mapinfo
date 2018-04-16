@@ -426,6 +426,8 @@ object frmMapInfo: TfrmMapInfo
       Height = 347
       ParentCustomHint = False
       Align = alClient
+      BevelInner = bvNone
+      BevelOuter = bvNone
       BiDiMode = bdLeftToRight
       Columns = <>
       DoubleBuffered = True
