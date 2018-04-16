@@ -382,7 +382,6 @@ object frmMapInfo: TfrmMapInfo
           Height = 17
           Caption = #26174#31034#25163#26426#21495#30721
           Checked = True
-          Enabled = False
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clWindowText
           Font.Height = -11
@@ -391,6 +390,7 @@ object frmMapInfo: TfrmMapInfo
           ParentFont = False
           State = cbChecked
           TabOrder = 10
+          OnClick = ChkTelphoneClick
         end
         object btn_vcf: TButton
           Left = 212

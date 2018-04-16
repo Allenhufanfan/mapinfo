@@ -105,6 +105,7 @@ type
     procedure btn_ClearClick(Sender: TObject);
     procedure btn_txtClick(Sender: TObject);
     procedure btn_vcfClick(Sender: TObject);
+    procedure ChkTelphoneClick(Sender: TObject);
     procedure dxBarBtn_360Click(Sender: TObject);
     procedure dxBarBtn_BaiduClick(Sender: TObject);
     procedure dxBarBtn_GaodeClick(Sender: TObject);
@@ -278,6 +279,11 @@ begin
     ToVCF(lvMapInfo, Self.Caption)
   else
     ShowQrymsg;
+end;
+
+procedure TfrmMapInfo.ChkTelphoneClick(Sender: TObject);
+begin
+  ChkTelphone.Checked := True;
 end;
 
 procedure TfrmMapInfo.dxBarBtn_360Click(Sender: TObject);

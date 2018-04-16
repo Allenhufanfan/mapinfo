@@ -1,4 +1,4 @@
-unit uPublicFunc;
+﻿unit uPublicFunc;
 
 interface
 
@@ -21,6 +21,9 @@ var
   saveDlg: TSaveDialog;
   modelfile: string;
 begin
+  if FListView.Items.Count <= 0 then
+    Exit;
+
   modelfile := ExtractFilePath(Paramstr(0)) + 'template.xls';
   if not FileExists(modelfile) then
   begin
@@ -87,6 +90,9 @@ var
   Str: string;
   Line: string;
 begin
+  if FListView.Items.Count <= 0 then
+    Exit;
+
   StrList := TStringList.Create;
   try
     Str := '';
@@ -109,10 +115,19 @@ begin
 
     SaveDialog := TSaveDialog.Create(nil);
     SaveDialog.Filter := '*.txt|*.txt';
+    SaveDialog.DefaultExt := 'txt';
     SaveDialog.FileName := sFiledname;
     if SaveDialog.Execute then
     begin
-      StrList.SaveToFile(SaveDialog.FileName + '.txt'); //采用stringlist封装的文件流接口
+      if FileExists(SaveDialog.FileName) then
+      begin
+        if application.messagebox('该文件已经存在，要覆盖吗？', '询问', mb_yesno + mb_iconquestion) = idyes then
+          DeleteFile(PChar(SaveDialog.FileName))
+        else
+          exit;
+      end;
+
+      StrList.SaveToFile(SaveDialog.FileName); //采用stringlist封装的文件流接口
       Application.MessageBox('导出文件成功！', '提示', MB_ICONINFORMATION);
     end;
   finally
@@ -128,10 +143,11 @@ var
   orgname,phone,addr: string;
   Line: string;
 begin
+  if FListView.Items.Count <= 0 then
+    Exit;
+
   StrList := TStringList.Create;
   try
-    FListView.Items.BeginUpdate;
-    FListView.Items.EndUpdate;
     for i := 0 to FListView.Items.Count - 1 do
     begin
       StrList.Add('BEGIN:VCARD');
@@ -148,10 +164,18 @@ begin
     end;
     SaveDialog := TSaveDialog.Create(nil);
     SaveDialog.Filter := '*.vcf|*.vcf';
+    SaveDialog.DefaultExt := 'vcf';
     SaveDialog.FileName := sFiledname;
     if SaveDialog.Execute then
     begin
-      StrList.SaveToFile(SaveDialog.FileName + '.vcf'); //采用stringlist封装的文件流接口
+      if FileExists(SaveDialog.FileName) then
+      begin
+        if application.messagebox('该文件已经存在，要覆盖吗？', '询问', mb_yesno + mb_iconquestion) = idyes then
+          DeleteFile(PChar(SaveDialog.FileName))
+        else
+          exit;
+      end;
+      StrList.SaveToFile(SaveDialog.FileName); //采用stringlist封装的文件流接口
       Application.MessageBox('导出文件成功！', '提示', MB_ICONINFORMATION);
     end;
 
