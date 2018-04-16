@@ -10,6 +10,8 @@ procedure ToExcel(FListView: TListView; sFiledname: string);
 
 procedure ToTxt(FListView: TListView; sFiledname: string);
 
+procedure ToVCF(FListView: TListView; sFiledname: string);
+
 implementation
 
 procedure ToExcel(FListView: TListView; sFiledname: string);
@@ -22,7 +24,7 @@ begin
   modelfile := ExtractFilePath(Paramstr(0)) + 'template.xls';
   if not FileExists(modelfile) then
   begin
-    Application.MessageBox('ÏµÍ³²»Ö§³Ö¸Ã±¨±íµ¼³ö', 'ÌáÊ¾', MB_OK + MB_ICONINFORMATION);
+    Application.MessageBox('ç³»ç»Ÿä¸æ”¯æŒè¯¥æŠ¥è¡¨å¯¼å‡º', 'æç¤º', MB_OK + MB_ICONINFORMATION);
     Exit;
   end;
   saveDlg := TSaveDialog.Create(nil);
@@ -35,13 +37,13 @@ begin
       try
         ExcelApp := CreateOleObject('Excel.Application');
       except
-        Application.MessageBox('ÎŞ·¨´ò¿ªXlsÎÄ¼ş£¬ÇëÈ·ÈÏÒÑ¾­°²×°EXCEL.', '´íÎó', MB_OK + mb_IconStop);
+        Application.MessageBox('æ— æ³•æ‰“å¼€Xlsæ–‡ä»¶ï¼Œè¯·ç¡®è®¤å·²ç»å®‰è£…EXCEL.', 'é”™è¯¯', MB_OK + mb_IconStop);
         exit;
       end;
 
       if FileExists(saveDlg.FileName) then
       begin
-        if application.messagebox('¸ÃÎÄ¼şÒÑ¾­´æÔÚ£¬Òª¸²¸ÇÂğ£¿', 'Ñ¯ÎÊ', mb_yesno + mb_iconquestion) = idyes then
+        if application.messagebox('è¯¥æ–‡ä»¶å·²ç»å­˜åœ¨ï¼Œè¦è¦†ç›–å—ï¼Ÿ', 'è¯¢é—®', mb_yesno + mb_iconquestion) = idyes then
           DeleteFile(PChar(saveDlg.FileName))
         else
           exit;
@@ -63,11 +65,11 @@ begin
       end;
 
       ExcelApp.ActiveWorkBook.SaveAs(saveDlg.FileName);
-      if Application.MessageBox('µ¼³öÎÄ¼ş³É¹¦!, ÊÇ·ñĞèÒªÏÖÔÚ²é¿´? ', 'ÌáÊ¾', MB_YESNO + MB_ICONINFORMATION + MB_DEFBUTTON2) = ID_YES then
+      if Application.MessageBox('å¯¼å‡ºæ–‡ä»¶æˆåŠŸ!, æ˜¯å¦éœ€è¦ç°åœ¨æŸ¥çœ‹? ', 'æç¤º', MB_YESNO + MB_ICONINFORMATION + MB_DEFBUTTON2) = ID_YES then
         ShellExecute(Application.Handle, 'Open', Pchar(saveDlg.FileName), nil, nil, SW_SHOWNORMAL);
     except
       on E: Exception do
-        MessageBox(Application.Handle, PChar(E.Message), 'ÏµÍ³ÌáÊ¾', MB_ICONINFORMATION or MB_OK);
+        MessageBox(Application.Handle, PChar(E.Message), 'ç³»ç»Ÿæç¤º', MB_ICONINFORMATION or MB_OK);
     end;
   finally
     ExcelApp.quit;
@@ -110,9 +112,49 @@ begin
     SaveDialog.FileName := sFiledname;
     if SaveDialog.Execute then
     begin
-      StrList.SaveToFile(SaveDialog.FileName + '.txt'); //²ÉÓÃstringlist·â×°µÄÎÄ¼şÁ÷½Ó¿Ú
-      Application.MessageBox('µ¼³öÎÄ¼ş³É¹¦£¡', 'ÌáÊ¾', MB_ICONINFORMATION);
+      StrList.SaveToFile(SaveDialog.FileName + '.txt'); //é‡‡ç”¨stringlistå°è£…çš„æ–‡ä»¶æµæ¥å£
+      Application.MessageBox('å¯¼å‡ºæ–‡ä»¶æˆåŠŸï¼', 'æç¤º', MB_ICONINFORMATION);
     end;
+  finally
+    StrList.Free;
+  end;
+end;
+
+procedure ToVCF(FListView: TListView; sFiledname: string);
+var
+  StrList: TStringList;
+  SaveDialog: TSaveDialog;
+  i, j: Integer;
+  orgname,phone,addr: string;
+  Line: string;
+begin
+  StrList := TStringList.Create;
+  try
+    FListView.Items.BeginUpdate;
+    FListView.Items.EndUpdate;
+    for i := 0 to FListView.Items.Count - 1 do
+    begin
+      StrList.Add('BEGIN:VCARD');
+      StrList.Add('VERSION:2.1');
+
+      orgname := FListView.Items[i].SubItems[1];
+      phone := FListView.Items[i].SubItems[2];
+      addr := FListView.Items[i].SubItems[4];
+      StrList.Add('ORG;CHARSET=gb2312:' + orgname);
+      StrList.Add('TEL;WORK;VOICE:' + phone);
+      StrList.Add('ADR;WORK;CHARSET=gb2312:;;' + addr + ';;;');
+
+      StrList.Add('END:VCARD');
+    end;
+    SaveDialog := TSaveDialog.Create(nil);
+    SaveDialog.Filter := '*.vcf|*.vcf';
+    SaveDialog.FileName := sFiledname;
+    if SaveDialog.Execute then
+    begin
+      StrList.SaveToFile(SaveDialog.FileName + '.vcf'); //é‡‡ç”¨stringlistå°è£…çš„æ–‡ä»¶æµæ¥å£
+      Application.MessageBox('å¯¼å‡ºæ–‡ä»¶æˆåŠŸï¼', 'æç¤º', MB_ICONINFORMATION);
+    end;
+
   finally
     StrList.Free;
   end;

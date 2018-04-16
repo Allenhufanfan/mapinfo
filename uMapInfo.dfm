@@ -253,7 +253,7 @@ object frmMapInfo: TfrmMapInfo
           OnClick = btn_StopClick
         end
         object btn_Clear: TButton
-          Left = 216
+          Left = 212
           Top = 32
           Width = 75
           Height = 25
@@ -391,6 +391,21 @@ object frmMapInfo: TfrmMapInfo
           ParentFont = False
           State = cbChecked
           TabOrder = 10
+        end
+        object btn_vcf: TButton
+          Left = 212
+          Top = 72
+          Width = 75
+          Height = 25
+          Caption = #23548#20986'VCF'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -11
+          Font.Name = 'Tahoma'
+          Font.Style = []
+          ParentFont = False
+          TabOrder = 11
+          OnClick = btn_vcfClick
         end
       end
     end

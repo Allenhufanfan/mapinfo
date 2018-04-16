@@ -1,4 +1,4 @@
-unit uMapInfo;
+﻿unit uMapInfo;
 
 interface
 
@@ -95,6 +95,7 @@ type
     dxBarSubItem1: TdxBarSubItem;
     dxBarSubItem2: TdxBarSubItem;
     Act_Register: TAction;
+    btn_vcf: TButton;
     procedure Act_AddcityExecute(Sender: TObject);
     procedure Act_BarClickExecute(Sender: TObject);
     procedure Act_RegisterExecute(Sender: TObject);
@@ -103,6 +104,7 @@ type
     procedure btn_StopClick(Sender: TObject);
     procedure btn_ClearClick(Sender: TObject);
     procedure btn_txtClick(Sender: TObject);
+    procedure btn_vcfClick(Sender: TObject);
     procedure dxBarBtn_360Click(Sender: TObject);
     procedure dxBarBtn_BaiduClick(Sender: TObject);
     procedure dxBarBtn_GaodeClick(Sender: TObject);
@@ -260,6 +262,20 @@ begin
 
   if not FHttpFlag then
     ToTxt(lvMapInfo, Self.Caption)
+  else
+    ShowQrymsg;
+end;
+
+procedure TfrmMapInfo.btn_vcfClick(Sender: TObject);
+begin
+  if not IsActivation then
+  begin
+    ShowActimsg;
+    Exit;
+  end;
+
+  if not FHttpFlag then
+    ToVCF(lvMapInfo, Self.Caption)
   else
     ShowQrymsg;
 end;
